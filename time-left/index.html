@@ -1,11 +1,45 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Countdown to June 16th, 2023</title>
+    <title>Countdown to end of school</title>
+
+ 
+    <style>
+      body {
+        background: #3c3e48;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .countdown-label {
+        color: white;
+        font-family: monospace;
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 1.3;
+        text-align: center;
+      }
+
+
+      .top-text {
+        color: white;
+        font-family: monospace;
+        font-size: 30px;
+        font-weight: bold;
+        margin: 20px 0;
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
-    <label id="countdown-label"></label>
-    <script>
+    <label class="top-text">Count Down To End Of School</label>
+    
+    <label class="countdown-label" id="countdown-label"></label>
+   <script>
       // Set the target date and time
       const targetDate = new Date("2023-06-16T12:30:00");
       
@@ -35,7 +69,7 @@
         
         // Update the text label with the countdown
         const countdownLabel = document.getElementById("countdown-label");
-        countdownLabel.textContent = `${weekdays} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds until June 16th, 2023 (excluding weekends and Memorial Day)!`;
+        countdownLabel.textContent = `${weekdays} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds until June 16th, 2023 (excluding weekends and Memorial Day)`;
       }
       
       // Update the countdown every second
