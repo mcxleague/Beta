@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Countdown to June 16th, 12:30 PM</title>
+    <title>Countdown to June 16th, 2023</title>
   </head>
   <body>
-    <p id="countdown"></p>
+    <label id="countdown-label"></label>
     <script>
       // Set the target date and time
       const targetDate = new Date("2023-06-16T12:30:00");
@@ -13,12 +13,12 @@
       const weekendDays = [0, 6]; // Sunday and Saturday
       const memorialDay = new Date("2023-05-29");
       
-      // Calculate the time difference between now and the target date
+      // Calculate the time until the target date, excluding weekends and Memorial Day
       function calculateCountdown() {
         const now = new Date();
         let timeDiff = targetDate - now;
         
-        // Subtract the weekends and Memorial Day from the time difference
+        // Calculate the number of weekdays until the target date
         let days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
         let weekdays = 0;
         for (let i = 0; i <= days; i++) {
@@ -27,22 +27,15 @@
             weekdays++;
           }
         }
-        timeDiff = weekdays * 24 * 60 * 60 * 1000;
         
-        // Calculate the remaining time components
-        const weeks = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 7));
-        timeDiff -= weeks * 1000 * 60 * 60 * 24 * 7;
-        const daysRemaining = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-        timeDiff -= daysRemaining * 1000 * 60 * 60 * 24;
-        const hours = Math.floor(timeDiff / (1000 * 60 * 60));
-        timeDiff -= hours * 1000 * 60 * 60;
-        const minutes = Math.floor(timeDiff / (1000 * 60));
-        timeDiff -= minutes * 1000 * 60;
-        const seconds = Math.floor(timeDiff / 1000);
+        // Calculate the remaining time until the target date
+        let hours = Math.floor((timeDiff / (1000 * 60 * 60)) % 24);
+        let minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
+        let seconds = Math.floor((timeDiff / 1000) % 60);
         
-        // Update the HTML with the countdown
-        const countdownEl = document.getElementById("countdown");
-        countdownEl.innerHTML = `Countdown: ${weeks} weeks, ${daysRemaining} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds until June 16th, 12:30 PM (skipping weekends and Memorial Day)`;
+        // Update the text label with the countdown
+        const countdownLabel = document.getElementById("countdown-label");
+        countdownLabel.textContent = `${weekdays} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds until June 16th, 2023 (excluding weekends and Memorial Day)`;
       }
       
       // Update the countdown every second
